@@ -8,41 +8,66 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyScreen(),
+      home: MyHomePage(),
     );
   }
 }
 
-class MyScreen extends StatelessWidget {
-  final TextEditingController _controller = TextEditingController();
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
 
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Text Field aur Button Example'),
-        centerTitle: true,
+        title: Text('Styled TextField and Button Card'),
+        centerTitle: false,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: _controller,
-              decoration: InputDecoration(
-                labelText: 'Text likhein',
+          children: <Widget>[
+            Container(
+              width: 300,
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Enter your text...',
+                  border: InputBorder.none,
+                ),
               ),
             ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                String enteredText = _controller.text;
-                // Aap enteredText ka use karke kuch aur actions perform kar sakte hain.
-                print('Entered text: $enteredText');
-              },
-              child: Text('Button'),
+            SizedBox(height: 20),
+            Card(
+              color: Colors.blue,
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: InkWell(
+                onTap: () {
+                  // Handle button tap
+                },
+                child: Container(
+                  width: 150,
+                  height: 50,
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Submit',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ),
             ),
           ],
         ),
